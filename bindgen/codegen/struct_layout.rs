@@ -96,7 +96,7 @@ impl<'a> StructLayoutTracker<'a> {
     ) -> Self {
         let known_type_layout = ty.layout(ctx);
         let (is_rust_union, can_copy_union_fields) =
-            comp.is_rust_union(ctx, known_type_layout.as_ref(), name);
+            comp.is_rust_union(ctx, name);
         StructLayoutTracker {
             name,
             ctx,

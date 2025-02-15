@@ -1712,14 +1712,13 @@ impl CompInfo {
     /// Requirements:
     ///     1. Current `RustTarget` allows for `untagged_union`
     ///     2. Each field can derive `Copy` or we use `ManuallyDrop`.
-    ///     3. It's not zero-sized.
+    ///     3. It does not have zero fields.
     ///
     /// Second boolean returns whether all fields can be copied (and thus
     /// `ManuallyDrop` is not needed).
     pub(crate) fn is_rust_union(
         &self,
         ctx: &BindgenContext,
-        layout: Option<&Layout>,
         name: &str,
     ) -> (bool, bool) {
         if !self.is_union() {
@@ -1742,6 +1741,10 @@ impl CompInfo {
             ctx.options().default_non_copy_union_style
         };
 
+        if !self.has_fields() {
+            return (false, false);
+        }
+
         let all_can_copy = self.fields().iter().all(|f| match *f {
             Field::DataMember(ref field_data) => {
                 field_data.ty().can_derive_copy(ctx)
@@ -1750,10 +1753,6 @@ impl CompInfo {
         });
 
         if !all_can_copy && union_style == NonCopyUnionStyle::BindgenWrapper {
-            return (false, false);
-        }
-
-        if layout.is_some_and(|l| l.size == 0) {
             return (false, false);
         }
 

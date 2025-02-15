@@ -586,8 +586,9 @@ pub struct WithAnonUnion {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub union WithAnonUnion__bindgen_ty_1 {
+pub struct WithAnonUnion__bindgen_ty_1 {
     pub _address: u8,
+    pub bindgen_union_field: u8,
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {

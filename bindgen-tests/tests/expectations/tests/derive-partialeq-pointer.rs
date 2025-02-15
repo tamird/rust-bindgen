@@ -26,8 +26,9 @@ pub struct c {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub union c__bindgen_ty_1 {
+pub struct c__bindgen_ty_1 {
     pub _address: u8,
+    pub bindgen_union_field: u8,
 }
 #[allow(clippy::unnecessary_operation, clippy::identity_op)]
 const _: () = {

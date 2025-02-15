@@ -1,48 +1,5 @@
 #![allow(dead_code, non_snake_case, non_camel_case_types, non_upper_case_globals)]
 #[repr(C)]
-pub struct __BindgenUnionField<T>(::std::marker::PhantomData<T>);
-impl<T> __BindgenUnionField<T> {
-    #[inline]
-    pub const fn new() -> Self {
-        __BindgenUnionField(::std::marker::PhantomData)
-    }
-    #[inline]
-    pub unsafe fn as_ref(&self) -> &T {
-        ::std::mem::transmute(self)
-    }
-    #[inline]
-    pub unsafe fn as_mut(&mut self) -> &mut T {
-        ::std::mem::transmute(self)
-    }
-}
-impl<T> ::std::default::Default for __BindgenUnionField<T> {
-    #[inline]
-    fn default() -> Self {
-        Self::new()
-    }
-}
-impl<T> ::std::clone::Clone for __BindgenUnionField<T> {
-    #[inline]
-    fn clone(&self) -> Self {
-        *self
-    }
-}
-impl<T> ::std::marker::Copy for __BindgenUnionField<T> {}
-impl<T> ::std::fmt::Debug for __BindgenUnionField<T> {
-    fn fmt(&self, fmt: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-        fmt.write_str("__BindgenUnionField")
-    }
-}
-impl<T> ::std::hash::Hash for __BindgenUnionField<T> {
-    fn hash<H: ::std::hash::Hasher>(&self, _state: &mut H) {}
-}
-impl<T> ::std::cmp::PartialEq for __BindgenUnionField<T> {
-    fn eq(&self, _other: &__BindgenUnionField<T>) -> bool {
-        true
-    }
-}
-impl<T> ::std::cmp::Eq for __BindgenUnionField<T> {}
-#[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct StylePoint<T> {
     pub _phantom_0: ::std::marker::PhantomData<::std::cell::UnsafeCell<T>>,
@@ -60,13 +17,12 @@ impl<T> Default for StylePoint<T> {
 }
 #[repr(C)]
 #[repr(align(1))]
-pub struct StyleFoo<T> {
+pub union StyleFoo<T> {
     pub _phantom_0: ::std::marker::PhantomData<::std::cell::UnsafeCell<T>>,
-    pub __bindgen_anon_1: __BindgenUnionField<StyleFoo__bindgen_ty_1>,
-    pub foo: __BindgenUnionField<StyleFoo_Foo_Body<T>>,
-    pub bar: __BindgenUnionField<StyleFoo_Bar_Body<T>>,
-    pub baz: __BindgenUnionField<StyleFoo_Baz_Body<T>>,
-    pub bindgen_union_field: [u8; 0usize],
+    pub __bindgen_anon_1: StyleFoo__bindgen_ty_1,
+    pub foo: StyleFoo_Foo_Body<T>,
+    pub bar: StyleFoo_Bar_Body<T>,
+    pub baz: StyleFoo_Baz_Body<T>,
 }
 pub const StyleFoo_Tag_Foo: StyleFoo_Tag = 0;
 pub const StyleFoo_Tag_Bar: StyleFoo_Tag = 0;
@@ -206,12 +162,11 @@ impl<T> Default for StyleBar_StyleBar3_Body<T> {
 }
 #[repr(C)]
 #[repr(align(1))]
-pub struct StyleBar__bindgen_ty_1<T> {
+pub union StyleBar__bindgen_ty_1<T> {
     pub _phantom_0: ::std::marker::PhantomData<::std::cell::UnsafeCell<T>>,
-    pub bar1: __BindgenUnionField<StyleBar_StyleBar1_Body<T>>,
-    pub bar2: __BindgenUnionField<StyleBar_StyleBar2_Body<T>>,
-    pub bar3: __BindgenUnionField<StyleBar_StyleBar3_Body<T>>,
-    pub bindgen_union_field: [u8; 0usize],
+    pub bar1: StyleBar_StyleBar1_Body<T>,
+    pub bar2: StyleBar_StyleBar2_Body<T>,
+    pub bar3: StyleBar_StyleBar3_Body<T>,
 }
 impl<T> Default for StyleBar__bindgen_ty_1<T> {
     fn default() -> Self {
